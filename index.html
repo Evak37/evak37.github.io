@@ -1,7 +1,75 @@
 <!DOCTYPE html>
-<html>
-  <body>
-    <h1>Hello, this is my GitHub homepage!</h1>
-    <p>Welcome to my site.</p>
-  </body>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eva K.</title>
+<meta name="description" content="Personal site — Visual Geography photography and other projects.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="site-nav">
+      <a class="wordmark" href="index.html">Eva K.</a>
+      <ul class="nav-links">
+        <li><a href="visual-geography.html">Visual Geography</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="frame-wide">
+      <p class="intro-line">Photographs and code, made while paying attention to place.</p>
+    </section>
+
+    <!-- Visual Geography preview -->
+    <section class="frame-wide" style="padding-top: 8px;">
+      <h2 class="location-name" style="font-size:16px; margin-bottom:20px;">Visual Geography</h2>
+      <div class="fig-pair">
+        <figure>
+          <img class="img-slot ratio-landscape" src="images/home/01.jpg" alt="Berkeley, July 2026" loading="lazy">
+        </figure>
+        <figure>
+          <img class="img-slot ratio-portrait" src="images/home/02.jpg" alt="Oakland, July 2026" loading="lazy">
+        </figure>
+        <figure>
+          <img class="img-slot ratio-landscape" src="images/home/03.jpg" alt="SF Richmond, September 2026" loading="lazy">
+        </figure>
+      </div>
+      <p style="margin-top: 8px;"><a class="quiet-link" href="visual-geography.html">View Visual Geography →</a></p>
+    </section>
+
+    <hr class="rule frame-wide">
+
+    <!-- Projects placeholder — same visual weight as Visual Geography -->
+    <section class="frame-wide" id="projects">
+      <h2 class="location-name" style="font-size:16px; margin-bottom:20px;">Projects</h2>
+      <div class="project-kicker">Project</div>
+      <h3 class="project-title">Data Structures &amp; Algorithms</h3>
+      <p class="project-desc">Selected coursework and experiments in data structures, graph algorithms, and software design.</p>
+      <div class="project-meta">CS 61B · 2026</div>
+      <p style="margin-top: 24px;"><a class="quiet-link" href="#">View Projects →</a></p>
+    </section>
+
+    <hr class="rule frame-wide">
+
+    <!-- About -->
+    <section class="frame-text" id="about" style="padding: 8px 24px 40px;">
+      <h2 class="location-name" style="font-size:16px; margin-bottom:16px;">About</h2>
+      <p class="project-desc">[Placeholder — one or two sentences in your own words. Not written for you, per your earlier note about not inventing a personality-heavy bio.]</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>© 2026 Eva K.</span>
+    <span><a href="https://github.com/">GitHub</a> · <a href="mailto:hello@example.com">Contact</a></span>
+  </footer>
+
+</body>
 </html>
