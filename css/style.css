@@ -1,0 +1,123 @@
+/* ---------- tokens ---------- */
+:root {
+  --bg: #F7F5F0;
+  --text: #1C1C1A;
+  --text-secondary: #8A8578;
+  --rule: #E4E1D9;
+  --placeholder-bg: #EAE7E0;
+  --placeholder-border: #D6D2C7;
+  --font-sans: 'Public Sans', -apple-system, sans-serif;
+  --font-serif: 'Source Serif 4', Georgia, serif;
+  --max-text: 640px;
+  --max-wide: 1080px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+}
+
+a { color: inherit; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--text-secondary); outline-offset: 3px; }
+
+/* ---------- layout containers ---------- */
+.frame-text { max-width: var(--max-text); margin: 0 auto; padding: 0 24px; }
+.frame-wide { max-width: var(--max-wide); margin: 0 auto; padding: 0 24px; }
+
+hr.rule { border: none; border-top: 1px solid var(--rule); margin: 56px 0; }
+
+/* ---------- site header / footer (repeated per page) ---------- */
+.site-header {
+  padding: 28px 24px 0;
+}
+.site-nav {
+  max-width: var(--max-wide);
+  margin: 0 auto;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px 32px;
+}
+.wordmark {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 500;
+  text-decoration: none;
+}
+.nav-links { display: flex; gap: 28px; list-style: none; padding: 0; margin: 0; }
+.nav-links a { font-size: 14px; color: var(--text-secondary); text-decoration: none; }
+.nav-links a:hover, .nav-links a[aria-current="page"] { color: var(--text); }
+
+.site-footer {
+  max-width: var(--max-wide);
+  margin: 0 auto;
+  padding: 64px 24px 48px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+.site-footer a { color: var(--text-secondary); }
+.site-footer a:hover { color: var(--text); }
+
+/* ---------- page heads ---------- */
+.page-head { padding: 72px 0 48px; }
+.page-title { font-family: var(--font-serif); font-size: 28px; font-weight: 500; margin: 0 0 8px; }
+.page-subtitle { font-size: 14px; color: var(--text-secondary); margin: 0 0 20px; }
+.quiet-link { font-size: 14px; color: var(--text-secondary); text-decoration: none; border-bottom: 1px solid var(--rule); }
+.quiet-link:hover { color: var(--text); border-color: var(--text-secondary); }
+
+.intro-line { font-family: var(--font-serif); font-size: 18px; line-height: 1.65; max-width: 38ch; margin: 28px 0 44px; }
+
+/* ---------- location sections ---------- */
+.location-block { padding: 56px 0 8px; }
+.location-name { font-family: var(--font-serif); font-size: 22px; font-weight: 500; margin: 0 0 32px; }
+
+/* ---------- image vocabulary (flexible, not a repeating template) ---------- */
+.img-slot {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: var(--placeholder-bg);
+  border: 1px solid var(--placeholder-border);
+  object-fit: contain;
+}
+.ratio-landscape { aspect-ratio: 3 / 2; }
+.ratio-portrait { aspect-ratio: 2 / 3; }
+.ratio-wide { aspect-ratio: 21 / 6; }
+
+figure { margin: 0 0 40px; }
+figcaption { font-size: 13px; color: var(--text-secondary); margin-top: 10px; }
+
+.fig-near-full { max-width: var(--max-wide); margin-left: auto; margin-right: auto; }
+.fig-medium { max-width: 620px; margin-left: auto; margin-right: 0; }
+.fig-portrait { max-width: 300px; margin-left: auto; margin-right: 0; }
+.fig-pair { display: flex; gap: 20px; flex-wrap: wrap; }
+.fig-pair figure { flex: 1 1 260px; margin-bottom: 0; }
+.fig-full-bleed { width: 100vw; position: relative; left: 50%; margin-left: -50vw; margin-bottom: 40px; }
+.fig-full-bleed .img-slot { border-left: none; border-right: none; }
+
+/* ---------- final sequence: linear, no numbering ---------- */
+.sequence-list { display: flex; flex-direction: column; gap: 32px; max-width: var(--max-text); margin: 0 auto; }
+
+/* ---------- projects placeholder ---------- */
+.project-kicker { font-size: 12px; letter-spacing: 0.05em; color: var(--text-secondary); margin-bottom: 10px; }
+.project-title { font-family: var(--font-serif); font-size: 22px; font-weight: 500; margin: 0 0 12px; }
+.project-desc { font-family: var(--font-serif); font-size: 16px; line-height: 1.65; max-width: 56ch; margin: 0 0 14px; }
+.project-meta { font-size: 13px; color: var(--text-secondary); }
+
+@media (max-width: 640px) {
+  .site-nav { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .fig-medium, .fig-portrait { max-width: 100%; margin-right: auto; }
+  .page-head { padding: 48px 0 32px; }
+}
