@@ -1,55 +1,55 @@
-# Eva K. — site v1.1
+# Eva K. — Visual Geography site
 
-Plain HTML/CSS/JS with no build step. It can be deployed directly on GitHub Pages.
+Static HTML/CSS site for GitHub Pages. No build step is required.
 
-## What changed in this revision
+## Current pages
 
-- Removed all placeholder aspect-ratio boxes and gray image backgrounds.
-- Berkeley now uses all 10 real photographs and preserves each file's intrinsic aspect ratio.
-- Berkeley layout is calmer and uses a small set of placements rather than arbitrary large/small alternation.
-- Background is plain white and typography is Public Sans.
-- Homepage preview reuses real Berkeley assets instead of duplicating images into a separate `home` folder.
-- Final Sequence is prepared as a page-level horizontal viewing space, not a carousel component.
-- Missing Final Sequence files hide automatically, so the page does not show broken-image icons.
+- `index.html` — minimal homepage
+- `visual-geography.html` — Places view; Berkeley is currently populated
+- `final-sequence.html` — horizontal Final Sequence viewer; it automatically hides missing sequence files
 
-## Image folders
+## Current Berkeley images
 
-Current:
+`images/berkeley/01.jpg` through `10.jpg` are web-optimized JPEGs. The CSS preserves each image's intrinsic aspect ratio and limits its displayed height so photographs should fit comfortably on laptop screens without browser zooming.
+
+## Adding the remaining Places
+
+Recommended folders:
 
 ```
 images/
   berkeley/
-    01.jpg ... 10.jpg
-  sequence/
-    (add ordered final images here)
+  oakland/
+  hayward/
+  niles/
+  richmond/
 ```
 
-The Berkeley files in this package are web-optimized copies: long edge 2400 px, JPEG quality 84, and metadata removed. Keep your original large exports separately as masters.
+Keep the original/master TIFF or huge PNG files outside this repository. Export web copies as sRGB JPEG or WebP, roughly 2000–2400 px on the long edge. A few hundred KB to about 1 MB per photograph is a useful target.
 
-## Adding the Final Sequence
+It is fine to upload the previously curated selections first as a working set. Curation, reordering, and replacement can happen after all Places are visible together.
 
-Place the authored sequence in `images/sequence/` using the real order:
+## Final Sequence
+
+Place the authored sequence in:
 
 ```
-01.jpg
-02.jpg
-03.jpg
+images/sequence/01.jpg
+images/sequence/02.jpg
 ...
 ```
 
-`final-sequence.html` is already wired for 01–22. Missing numbers are ignored automatically. If your final count differs, edit the figure list later; no visible numbers appear on the page.
+The existing page checks 01–22 and automatically removes missing images. Keep the authored order in the filenames.
 
-## Deploy to GitHub Pages
+## Design status
 
-Upload the contents of this `site` folder to the root of your `EvaK37.github.io` repository, preserving the folder structure exactly:
+Version 1 is intentionally sparse:
 
-```
-index.html
-visual-geography.html
-final-sequence.html
-css/style.css
-js/sequence.js
-images/...
-```
+- Public Sans
+- white background
+- no Projects or About filler copy
+- no visible image numbering
+- no fixed aspect-ratio boxes
+- no cards or decorative image frames
 
-GitHub paths are case-sensitive, so keep the lowercase names exactly as shown.
+The next design pass should happen after the remaining real photographs are loaded.
