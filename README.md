@@ -53,3 +53,13 @@ Version 1 is intentionally sparse:
 - no cards or decorative image frames
 
 The next design pass should happen after the remaining real photographs are loaded.
+
+
+## Current place-image counts
+- Berkeley: 10
+- Oakland: 12
+- Hayward: 15
+- Niles: 12
+- SF Richmond: 14
+
+`visual-geography.html` currently references every image in each folder as `01.jpg`, `02.jpg`, etc. This is intentionally a working archive; layout/selection can be refined later.
