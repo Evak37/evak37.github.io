@@ -1,26 +1,55 @@
-# Site skeleton — Version 1 (in progress)
+# Eva K. — site v1.1
 
-Plain HTML/CSS, no build step, so it deploys directly on GitHub Pages.
+Plain HTML/CSS/JS with no build step. It can be deployed directly on GitHub Pages.
 
-## What's built so far
-- `index.html` — homepage (nav, intro line, Visual Geography preview, Projects placeholder, About, footer)
-- `visual-geography.html` — page top + the Berkeley section only
-- `final-sequence.html` — page top + the first 4 images (placeholder order)
-- `css/style.css` — shared tokens, typography, nav/footer, and the image-width vocabulary
-- Not yet built: Oakland / Hayward / Niles / SF Richmond sections, and the rest of the Final Sequence — these come next once Berkeley is confirmed.
+## What changed in this revision
 
-## Adding real photographs
-Images are referenced by path but no files exist yet, so browsers will show broken-image icons and alt text until you add them. To add real photos:
+- Removed all placeholder aspect-ratio boxes and gray image backgrounds.
+- Berkeley now uses all 10 real photographs and preserves each file's intrinsic aspect ratio.
+- Berkeley layout is calmer and uses a small set of placements rather than arbitrary large/small alternation.
+- Background is plain white and typography is Public Sans.
+- Homepage preview reuses real Berkeley assets instead of duplicating images into a separate `home` folder.
+- Final Sequence is prepared as a page-level horizontal viewing space, not a carousel component.
+- Missing Final Sequence files hide automatically, so the page does not show broken-image icons.
 
-1. Export web-optimized copies from your TIFF/PNG masters (JPEG or WebP, not the originals).
-2. Drop them into the matching folder using the naming pattern already referenced in the HTML:
-   - `images/home/01.jpg`, `02.jpg`, `03.jpg` — homepage preview
-   - `images/berkeley/01.jpg` through `07.jpg` — Berkeley section (rename/add more as needed)
-   - `images/sequence/01.jpg` through `04.jpg` — Final Sequence (rename/add more as needed)
-3. Each `<img>` currently has a `ratio-landscape`, `ratio-portrait`, or `ratio-wide` class as a layout-stability default. Once a real photo is in place, feel free to remove that class (or pick the closer one) so the box matches the photo's actual aspect ratio rather than forcing it — the CSS doesn't require a match, it's just a placeholder-stage default.
-4. Update each `alt` attribute with a real short description once you're placing real content.
+## Image folders
 
-## Deploying to GitHub Pages
-1. Push this folder to a GitHub repository (root of the repo, or a `/docs` folder).
-2. In the repo, go to Settings → Pages, and set the source to the branch/folder where this lives.
-3. No build step is required — GitHub Pages serves the HTML/CSS/images directly.
+Current:
+
+```
+images/
+  berkeley/
+    01.jpg ... 10.jpg
+  sequence/
+    (add ordered final images here)
+```
+
+The Berkeley files in this package are web-optimized copies: long edge 2400 px, JPEG quality 84, and metadata removed. Keep your original large exports separately as masters.
+
+## Adding the Final Sequence
+
+Place the authored sequence in `images/sequence/` using the real order:
+
+```
+01.jpg
+02.jpg
+03.jpg
+...
+```
+
+`final-sequence.html` is already wired for 01–22. Missing numbers are ignored automatically. If your final count differs, edit the figure list later; no visible numbers appear on the page.
+
+## Deploy to GitHub Pages
+
+Upload the contents of this `site` folder to the root of your `EvaK37.github.io` repository, preserving the folder structure exactly:
+
+```
+index.html
+visual-geography.html
+final-sequence.html
+css/style.css
+js/sequence.js
+images/...
+```
+
+GitHub paths are case-sensitive, so keep the lowercase names exactly as shown.

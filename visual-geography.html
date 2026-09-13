@@ -4,15 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Visual Geography — Eva K.</title>
+<meta name="description" content="Visual Geography — photographs made across the Bay Area in Summer 2026.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
   <header class="site-header">
-    <nav class="site-nav">
+    <nav class="site-nav" aria-label="Main navigation">
       <a class="wordmark" href="index.html">Eva K.</a>
       <ul class="nav-links">
         <li><a href="visual-geography.html" aria-current="page">Visual Geography</a></li>
@@ -29,57 +29,78 @@
       <a class="quiet-link" href="final-sequence.html">View Final Sequence →</a>
     </section>
 
-    <!-- BERKELEY -->
-    <section class="location-block" id="berkeley">
-      <div class="frame-wide">
-        <h2 class="location-name">Berkeley</h2>
+    <section class="location-block" id="berkeley" aria-labelledby="berkeley-title">
+      <div class="frame-wide location-heading">
+        <h2 class="location-name" id="berkeley-title">Berkeley</h2>
+        <span class="location-date">July 2026</span>
       </div>
 
-      <div class="frame-wide">
-        <figure class="fig-near-full">
-          <img class="img-slot ratio-landscape" src="images/berkeley/01.jpg" alt="Berkeley, July 2026 — 01" loading="lazy">
-        </figure>
-
-        <figure class="fig-medium">
-          <img class="img-slot ratio-landscape" src="images/berkeley/02.jpg" alt="Berkeley, July 2026 — 02" loading="lazy">
-        </figure>
-
-        <div class="fig-pair">
-          <figure>
-            <img class="img-slot ratio-portrait" src="images/berkeley/03.jpg" alt="Berkeley, July 2026 — 03" loading="lazy">
+      <div class="frame-wide photo-sequence">
+        <div class="photo-row duo">
+          <figure class="portrait">
+            <img src="images/berkeley/01.jpg" alt="Sather Tower and outdoor tables on a lawn" loading="eager">
           </figure>
-          <figure>
-            <img class="img-slot ratio-landscape" src="images/berkeley/04.jpg" alt="Berkeley, July 2026 — 04" loading="lazy">
+          <figure class="landscape">
+            <img src="images/berkeley/02.jpg" alt="Berkeley street scene with contemporary buildings" loading="eager">
           </figure>
         </div>
 
-        <figure class="fig-portrait">
-          <img class="img-slot ratio-portrait" src="images/berkeley/05.jpg" alt="Berkeley, July 2026 — 05" loading="lazy">
-        </figure>
-      </div>
+        <div class="photo-row single center">
+          <figure class="photo-wide">
+            <img src="images/berkeley/03.jpg" alt="Person sitting on grass in front of a construction site" loading="lazy">
+          </figure>
+        </div>
 
-      <figure class="fig-full-bleed">
-        <img class="img-slot ratio-wide" src="images/berkeley/06.jpg" alt="Berkeley, July 2026 — 06" loading="lazy">
-      </figure>
+        <div class="photo-row duo">
+          <figure class="landscape">
+            <img src="images/berkeley/04.jpg" alt="Storefronts and parked vehicles along a Berkeley street" loading="lazy">
+          </figure>
+          <figure class="portrait">
+            <img src="images/berkeley/05.jpg" alt="Berkeley streetscape framed by a tall tree" loading="lazy">
+          </figure>
+        </div>
 
-      <div class="frame-wide">
-        <figure class="fig-near-full">
-          <img class="img-slot ratio-landscape" src="images/berkeley/07.jpg" alt="Berkeley, July 2026 — 07" loading="lazy">
-        </figure>
+        <div class="photo-row single left">
+          <figure class="photo-medium">
+            <img src="images/berkeley/06.jpg" alt="Flowers and a vegan sign outside a storefront" loading="lazy">
+          </figure>
+        </div>
+
+        <div class="photo-row single center">
+          <figure class="photo-wide">
+            <img src="images/berkeley/07.jpg" alt="Person seated beside a brick wall in dappled light" loading="lazy">
+          </figure>
+        </div>
+
+        <div class="photo-row single right">
+          <figure class="photo-portrait">
+            <img src="images/berkeley/08.jpg" alt="Bright green exterior staircase on a building" loading="lazy">
+          </figure>
+        </div>
+
+        <div class="photo-row single center">
+          <figure class="photo-wide">
+            <img src="images/berkeley/09.jpg" alt="Wooded landscape in Berkeley" loading="lazy">
+          </figure>
+        </div>
+
+        <div class="photo-row single right">
+          <figure class="photo-medium">
+            <img src="images/berkeley/10.jpg" alt="A group of people gathered outdoors" loading="lazy">
+          </figure>
+        </div>
       </div>
     </section>
 
     <hr class="rule frame-wide">
-
-    <!-- remaining locations (Oakland, Hayward, Niles, SF Richmond) go here next,
-         once Berkeley is confirmed and real photographs are placed -->
-
+    <section class="frame-wide" aria-label="More locations coming next">
+      <p class="project-desc" style="color:var(--muted);">Oakland, Hayward, Niles, and SF Richmond can be added with the same real-photo approach once their web images are ready.</p>
+    </section>
   </main>
 
   <footer class="site-footer">
     <span>© 2026 Eva K.</span>
     <span><a href="index.html">Home</a></span>
   </footer>
-
 </body>
 </html>

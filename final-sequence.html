@@ -4,15 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Final Sequence — Eva K.</title>
+<meta name="description" content="Final photographic sequence from Visual Geography.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-
+<body class="sequence-page">
   <header class="site-header">
-    <nav class="site-nav">
+    <nav class="site-nav" aria-label="Main navigation">
       <a class="wordmark" href="index.html">Eva K.</a>
       <ul class="nav-links">
         <li><a href="visual-geography.html">Visual Geography</a></li>
@@ -23,28 +23,42 @@
   </header>
 
   <main>
-    <section class="frame-text page-head">
-      <h1 class="page-title">Final Sequence</h1>
-      <p class="page-subtitle">An authored order — read linearly, top to bottom.</p>
-      <a class="quiet-link" href="visual-geography.html">View by Place →</a>
+    <section class="sequence-intro">
+      <div class="sequence-intro-copy">
+        <h1 class="page-title">Final Sequence</h1>
+        <a class="quiet-link" href="visual-geography.html">View by place →</a>
+      </div>
+      <p class="sequence-hint">drag / swipe →</p>
     </section>
 
-    <section class="sequence-list">
-      <figure>
-        <img class="img-slot ratio-landscape" src="images/sequence/01.jpg" alt="Final Sequence, image 1" loading="lazy">
-      </figure>
-      <figure>
-        <img class="img-slot ratio-portrait" src="images/sequence/02.jpg" alt="Final Sequence, image 2" loading="lazy">
-      </figure>
-      <figure>
-        <img class="img-slot ratio-landscape" src="images/sequence/03.jpg" alt="Final Sequence, image 3" loading="lazy">
-      </figure>
-      <figure>
-        <img class="img-slot ratio-landscape" src="images/sequence/04.jpg" alt="Final Sequence, image 4" loading="lazy">
-      </figure>
+    <div class="sequence-viewport" data-drag-scroll aria-label="Final photographic sequence">
+      <div class="sequence-track" id="sequence-track">
+        <p class="sequence-empty" id="sequence-empty">The horizontal sequence is ready. Add the final ordered images as <code>images/sequence/01.jpg</code>, <code>02.jpg</code>, and so on; missing files stay hidden automatically.</p>
 
-      <!-- remaining ~16 images continue here, in the order you provide -->
-    </section>
+        <figure><img src="images/sequence/01.jpg" alt="Final sequence photograph" loading="eager"></figure>
+        <figure><img src="images/sequence/02.jpg" alt="Final sequence photograph" loading="eager"></figure>
+        <figure><img src="images/sequence/03.jpg" alt="Final sequence photograph" loading="lazy"></figure>
+        <figure><img src="images/sequence/04.jpg" alt="Final sequence photograph" loading="lazy"></figure>
+        <figure><img src="images/sequence/05.jpg" alt="Final sequence photograph" loading="lazy"></figure>
+        <figure><img src="images/sequence/06.jpg" alt="Final sequence photograph" loading="lazy"></figure>
+        <figure><img src="images/sequence/07.jpg" alt="Final sequence photograph" loading="lazy"></figure>
+        <figure><img src="images/sequence/08.jpg" alt="Final sequence photograph" loading="lazy"></figure>
+        <figure><img src="images/sequence/09.jpg" alt="Final sequence photograph" loading="lazy"></figure>
+        <figure><img src="images/sequence/10.jpg" alt="Final sequence photograph" loading="lazy"></figure>
+        <figure><img src="images/sequence/11.jpg" alt="Final sequence photograph" loading="lazy"></figure>
+        <figure><img src="images/sequence/12.jpg" alt="Final sequence photograph" loading="lazy"></figure>
+        <figure><img src="images/sequence/13.jpg" alt="Final sequence photograph" loading="lazy"></figure>
+        <figure><img src="images/sequence/14.jpg" alt="Final sequence photograph" loading="lazy"></figure>
+        <figure><img src="images/sequence/15.jpg" alt="Final sequence photograph" loading="lazy"></figure>
+        <figure><img src="images/sequence/16.jpg" alt="Final sequence photograph" loading="lazy"></figure>
+        <figure><img src="images/sequence/17.jpg" alt="Final sequence photograph" loading="lazy"></figure>
+        <figure><img src="images/sequence/18.jpg" alt="Final sequence photograph" loading="lazy"></figure>
+        <figure><img src="images/sequence/19.jpg" alt="Final sequence photograph" loading="lazy"></figure>
+        <figure><img src="images/sequence/20.jpg" alt="Final sequence photograph" loading="lazy"></figure>
+        <figure><img src="images/sequence/21.jpg" alt="Final sequence photograph" loading="lazy"></figure>
+        <figure><img src="images/sequence/22.jpg" alt="Final sequence photograph" loading="lazy"></figure>
+      </div>
+    </div>
   </main>
 
   <footer class="site-footer">
@@ -52,5 +66,6 @@
     <span><a href="index.html">Home</a></span>
   </footer>
 
+  <script src="js/sequence.js"></script>
 </body>
 </html>
