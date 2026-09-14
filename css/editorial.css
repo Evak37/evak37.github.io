@@ -973,4 +973,74 @@ figure { margin: 0; }
     font-size: clamp(19px, 5.4vw, 25px);
   }
 }
-\n\n/* =========================================================\n   V3.9 — restore V3.6 summer narration, smoother flower motion,\n   and shift Oakland 11 left\n   ========================================================= */\n\n/* Return the summer sentence to the quieter V3.6 treatment. */\n.summer-line {\n  top: auto;\n  left: var(--pad);\n  right: auto;\n  bottom: clamp(38px, 6vh, 72px);\n  width: auto;\n  max-width: min(600px, 58vw);\n  margin: 0;\n  display: block;\n  text-align: left;\n  font-family: var(--serif);\n  font-size: clamp(18px, 1.9vw, 30px);\n  font-style: italic;\n  font-weight: 400;\n  line-height: 1.04;\n  letter-spacing: -.025em;\n  color: rgba(255,255,255,.94);\n  text-shadow: 0 1px 14px rgba(0,0,0,.24);\n  gap: 0;\n}\n.summer-line::before { display: none; }\n\n/* Slower, more continuous accordion settling. */\n.flower-frame {\n  transition: flex-grow 1.42s cubic-bezier(.16, 1, .3, 1);\n}\n.flower-track.is-hovering .flower-frame { flex-grow: .78; }\n.flower-track.is-hovering .flower-frame.is-active {\n  flex-grow: 3.02;\n  z-index: 2;\n}\n\n/* Oakland 11: move the main print left while keeping its elevated placement. */\n@media (min-width: 1001px) {\n  .chapter-b .print-main {\n    right: 15%;\n    top: -12%;\n  }\n}\n\n@media (max-width: 1000px) {\n  .summer-line {\n    top: auto;\n    left: 22px;\n    right: auto;\n    bottom: 38px;\n    width: auto;\n    max-width: 72vw;\n    font-size: clamp(17px, 3.6vw, 26px);\n  }\n}\n\n@media (max-width: 680px) {\n  .summer-line {\n    top: auto;\n    left: 16px;\n    bottom: 30px;\n    max-width: 82vw;\n    font-size: clamp(16px, 5.1vw, 23px);\n  }\n}\n
+
+/* =========================================================
+   V3.10 — exact V3.6 summer narration + Oakland 11 farther left/up
+   ========================================================= */
+
+/* Restore the actual V3.6 narration treatment exactly. */
+.summer-line {
+  position: absolute;
+  z-index: 14;
+  top: auto;
+  left: var(--pad);
+  right: auto;
+  bottom: clamp(38px, 6vh, 72px);
+  width: auto;
+  max-width: min(600px, 58vw);
+  margin: 0;
+  display: block;
+  text-align: left;
+  color: #fff;
+  font-family: var(--serif);
+  font-size: clamp(18px, 1.9vw, 30px);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.04;
+  letter-spacing: -.025em;
+  text-shadow: 0 1px 22px rgba(0,0,0,.36);
+  gap: 0;
+  pointer-events: none;
+}
+.summer-line::before { display: none; }
+
+/* Keep the smoother V3.9 accordion timing. */
+.flower-frame {
+  transition: flex-grow 1.42s cubic-bezier(.16, 1, .3, 1);
+}
+.flower-track.is-hovering .flower-frame { flex-grow: .78; }
+.flower-track.is-hovering .flower-frame.is-active {
+  flex-grow: 3.02;
+  z-index: 2;
+}
+
+/* Oakland 11: continue moving left and up on desktop. */
+@media (min-width: 1001px) {
+  .chapter-b .print-main {
+    left: auto;
+    right: 22%;
+    top: -15%;
+  }
+}
+
+@media (max-width: 1000px) {
+  .summer-line {
+    top: auto;
+    left: 22px;
+    right: auto;
+    bottom: 38px;
+    width: auto;
+    max-width: 72vw;
+    font-size: clamp(17px, 3.6vw, 26px);
+  }
+}
+
+@media (max-width: 680px) {
+  .summer-line {
+    top: auto;
+    left: 16px;
+    bottom: 30px;
+    max-width: 82vw;
+    font-size: clamp(16px, 5.1vw, 23px);
+  }
+}
