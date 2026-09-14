@@ -1018,8 +1018,8 @@ figure { margin: 0; }
 @media (min-width: 1001px) {
   .chapter-b .print-main {
     left: auto;
-    right: 18%;
-    top: -27%;
+    right: 22%;
+    top: -15%;
   }
 }
 
@@ -1043,4 +1043,15 @@ figure { margin: 0; }
     max-width: 82vw;
     font-size: clamp(16px, 5.1vw, 23px);
   }
+}
+
+
+/* =========================================================
+   V3.11 — one-gesture desktop snap
+   The custom spring owns desktop page turns, so native smooth scrolling and
+   native CSS snap are disabled only while that controller is active.
+   ========================================================= */
+html.js-spring-snap {
+  scroll-behavior: auto !important;
+  scroll-snap-type: none !important;
 }

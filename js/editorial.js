@@ -147,24 +147,38 @@
   }
 
   function initSlowSnap() {
-    const fine = window.matchMedia('(pointer: fine)').matches;
-    if (!fine || window.innerWidth < 900 || reducedMotion.matches) return;
+    // Desktop gets one-gesture page turns regardless of mouse/trackpad media-query
+    // reporting. Mobile/touch keeps the browser's native vertical scrolling.
+    if (window.innerWidth < 900 || reducedMotion.matches) return;
 
     const pages = [...document.querySelectorAll('.snap-page')];
     if (pages.length < 2) return;
 
     let animating = false;
 
+    // Disable the browser's own smooth-scroll + CSS snap while the JS spring is
+    // responsible for page turns. This prevents the two systems from fighting
+    // each other and making a single wheel gesture feel as if it did nothing.
+    document.documentElement.classList.add('js-spring-snap');
+
     const pageTop = (el) => window.scrollY + el.getBoundingClientRect().top;
+
     const nearestIndex = () => {
       let best = 0;
       let bestDistance = Infinity;
       pages.forEach((page, index) => {
         const d = Math.abs(page.getBoundingClientRect().top);
-        if (d < bestDistance) { bestDistance = d; best = index; }
+        if (d < bestDistance) {
+          bestDistance = d;
+          best = index;
+        }
       });
       return best;
     };
+
+    function instantScrollTo(y) {
+      window.scrollTo({ top: y, left: 0, behavior: 'instant' });
+    }
 
     function animateTo(el) {
       const target = pageTop(el);
@@ -174,40 +188,50 @@
       const startTime = lastTime;
       animating = true;
 
-      // One wheel/trackpad gesture is enough to commit to one page. The home
-      // page deliberately uses a softer, slower spring so the page feels as if
-      // it has mass rather than simply easing to the next viewport.
+      // Slow, damped motion: one gesture commits immediately, but the page has
+      // visible mass and takes its time settling into the next viewport.
       const isHome = document.body.classList.contains('editorial-home');
-      const stiffness = isHome ? 0.0017 : 0.0052;
-      const damping = isHome ? 0.917 : 0.885;
-      const maxDuration = isHome ? 5400 : 2700;
+      const stiffness = isHome ? 0.0024 : 0.0034;
+      const damping = isHome ? 0.91 : 0.895;
+      const maxDuration = isHome ? 3800 : 3000;
 
       const frame = (now) => {
-        const dt = clamp((now - lastTime) / 16.667, .5, 2.0);
+        const dt = clamp((now - lastTime) / 16.667, 0.5, 2.0);
         lastTime = now;
+
         const displacement = target - position;
         velocity += displacement * stiffness * dt;
         velocity *= Math.pow(damping, dt);
         position += velocity * dt;
-        window.scrollTo(0, position);
 
-        const settled = Math.abs(target - position) < .7 && Math.abs(velocity) < .22;
+        instantScrollTo(position);
+
+        const settled =
+          Math.abs(target - position) < 0.65 &&
+          Math.abs(velocity) < 0.20;
+
         if (!settled && now - startTime < maxDuration) {
           requestAnimationFrame(frame);
         } else {
-          window.scrollTo(0, target);
-          setTimeout(() => { animating = false; }, 210);
+          instantScrollTo(target);
+          // Keep eating the tail of a trackpad gesture for a moment so one
+          // physical swipe cannot accidentally advance two pages.
+          setTimeout(() => {
+            animating = false;
+          }, 260);
         }
       };
+
       requestAnimationFrame(frame);
     }
 
-    window.addEventListener('wheel', (e) => {
-      if (e.ctrlKey || Math.abs(e.deltaX) > Math.abs(e.deltaY) || e.deltaY === 0) return;
+    const onWheel = (e) => {
+      if (e.ctrlKey || Math.abs(e.deltaX) > Math.abs(e.deltaY) || e.deltaY === 0) {
+        return;
+      }
 
-      // The gesture itself is the decision: there is intentionally no delta
-      // accumulator or threshold. Momentum events are ignored while the page
-      // is completing its spring transition.
+      // While the page is travelling, consume momentum events from the same
+      // physical gesture rather than treating them as new page turns.
       if (animating) {
         e.preventDefault();
         return;
@@ -216,13 +240,23 @@
       const current = nearestIndex();
       const direction = e.deltaY > 0 ? 1 : -1;
       const next = clamp(current + direction, 0, pages.length - 1);
-      // At the first/last snap page, release the wheel so the document can
-      // still reach ordinary content such as the footer.
+
+      // At either edge, release the browser so footer / normal document content
+      // remains reachable.
       if (next === current) return;
 
+      // No accumulated delta, no threshold: the first vertical wheel event is
+      // the decision to turn exactly one page.
       e.preventDefault();
       animateTo(pages[next]);
-    }, { passive: false });
+    };
+
+    // Capture phase makes this reliable even when the pointer is currently over
+    // an interactive child such as the flower accordion.
+    window.addEventListener('wheel', onWheel, {
+      passive: false,
+      capture: true
+    });
   }
 
   function tick() {
