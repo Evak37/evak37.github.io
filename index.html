@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/editorial.css?v=3.2">
+  <link rel="stylesheet" href="css/editorial.css?v=3.3">
 </head>
 <body class="editorial-home">
   <header class="editorial-header cover-header">
@@ -20,94 +20,75 @@
   </header>
 
   <main>
-    <section class="hero-cover" aria-labelledby="cover-title">
-      <img class="hero-cover__image" src="images/berkeley/09.jpg" alt="Two people sitting and talking among sunlit trees in Berkeley" fetchpriority="high">
+    <section class="hero-cover snap-page" data-home-hero aria-labelledby="cover-title">
+      <img class="hero-cover__image" data-hero-image src="images/berkeley/09.jpg" alt="Two people sitting and talking among sunlit trees in Berkeley" fetchpriority="high">
       <div class="hero-cover__shade" aria-hidden="true"></div>
-      <div class="hero-cover__copy reveal is-visible">
+      <div class="hero-cover__copy" data-hero-copy>
         <p class="eyebrow light">Bay Area · Summer 2026</p>
         <h1 id="cover-title"><span>Visual</span><span>Geography</span></h1>
         <a class="cover-enter" href="visual-geography.html">Enter the places <span aria-hidden="true">↗</span></a>
       </div>
       <p class="hero-cover__caption">Berkeley · July 2026</p>
       <div class="scroll-cue" aria-hidden="true"><span></span></div>
+      <div class="hero-transition-blur" data-transition-blur aria-hidden="true"></div>
     </section>
 
-    <section class="page-bridge" aria-hidden="true">
-      <div class="page-bridge__blur"></div>
-    </section>
-
-    <section class="summer-passage" data-summer aria-label="Seven summer photographs">
+    <section class="summer-passage snap-page" data-summer aria-label="Seven summer photographs">
       <div class="summer-stage">
-        <div class="summer-overlay summer-overlay--top">
-          <p class="eyebrow light-on-summer">Summer · 07 frames</p>
-          <p class="summer-hint">Scroll through the page</p>
-        </div>
-
         <div class="flower-ribbon" data-flower-ribbon>
           <div class="flower-track" data-flower-track>
-            <figure class="flower-frame landscape" data-flower-frame data-orientation="landscape">
-              <img class="flower-crop" src="images/flowers/01.jpg" alt="Pink summer flowers">
-              <img class="flower-full" src="images/flowers/01.jpg" alt="" aria-hidden="true">
+            <figure class="flower-frame" data-flower-frame>
+              <img src="images/flowers/01.jpg" alt="Pink summer flowers">
             </figure>
-            <figure class="flower-frame landscape" data-flower-frame data-orientation="landscape">
-              <img class="flower-crop" src="images/flowers/02.jpg" alt="Purple summer flowers beside a lawn">
-              <img class="flower-full" src="images/flowers/02.jpg" alt="" aria-hidden="true">
+            <figure class="flower-frame" data-flower-frame>
+              <img src="images/flowers/02.jpg" alt="Purple summer flowers beside a lawn">
             </figure>
-            <figure class="flower-frame portrait" data-flower-frame data-orientation="portrait">
-              <img class="flower-crop" src="images/flowers/03.jpg" alt="A garden pond in summer">
-              <img class="flower-full" src="images/flowers/03.jpg" alt="" aria-hidden="true">
+            <figure class="flower-frame" data-flower-frame>
+              <img src="images/flowers/03.jpg" alt="A garden pond in summer">
             </figure>
-            <figure class="flower-frame portrait" data-flower-frame data-orientation="portrait">
-              <img class="flower-crop" src="images/flowers/04.jpg" alt="Green hanging branches in summer light">
-              <img class="flower-full" src="images/flowers/04.jpg" alt="" aria-hidden="true">
+            <figure class="flower-frame" data-flower-frame>
+              <img src="images/flowers/04.jpg" alt="Green hanging branches in summer light">
             </figure>
-            <figure class="flower-frame landscape" data-flower-frame data-orientation="landscape">
-              <img class="flower-crop" src="images/flowers/05.jpg" alt="A flowering tree in pink and purple">
-              <img class="flower-full" src="images/flowers/05.jpg" alt="" aria-hidden="true">
+            <figure class="flower-frame" data-flower-frame>
+              <img src="images/flowers/05.jpg" alt="A flowering tree in pink and purple">
             </figure>
-            <figure class="flower-frame landscape" data-flower-frame data-orientation="landscape">
-              <img class="flower-crop" src="images/flowers/06.jpg" alt="Purple flowers near a house">
-              <img class="flower-full" src="images/flowers/06.jpg" alt="" aria-hidden="true">
+            <figure class="flower-frame" data-flower-frame>
+              <img src="images/flowers/06.jpg" alt="Purple flowers near a house">
             </figure>
-            <figure class="flower-frame portrait" data-flower-frame data-orientation="portrait">
-              <img class="flower-crop" src="images/flowers/07.jpg" alt="A red flowering tree along a street">
-              <img class="flower-full" src="images/flowers/07.jpg" alt="" aria-hidden="true">
+            <figure class="flower-frame" data-flower-frame>
+              <img src="images/flowers/07.jpg" alt="A red flowering tree along a street">
             </figure>
           </div>
         </div>
 
-        <div class="summer-overlay summer-overlay--bottom">
-          <p class="summer-line">“For a summer that summers like summer has never summered before.”</p>
-          <div class="summer-progress" aria-hidden="true"><span data-summer-progress></span></div>
+        <div class="summer-overlay summer-overlay--top">
+          <p class="eyebrow light-on-summer">Summer · 07 frames</p>
+          <p class="summer-hint">Move across the photographs</p>
         </div>
+
+        <p class="summer-line" data-summer-line>For a summer that summers like summer has never summered before.</p>
       </div>
     </section>
 
-    <section class="home-index reveal" aria-label="Continue through the project">
-      <div class="home-index__intro">
-        <p class="eyebrow">Visual Geography</p>
-        <h2>One summer,<br>two ways through it.</h2>
-      </div>
-      <div class="home-index__links">
-        <a href="visual-geography.html">
-          <span class="home-index__kicker">Berkeley · Oakland · Hayward · Niles · SF Richmond</span>
-          <span class="home-index__title">Places</span>
-          <span class="home-index__arrow" aria-hidden="true">↗</span>
-        </a>
-        <a href="final-sequence.html">
-          <span class="home-index__kicker">22 photographs · authored order</span>
-          <span class="home-index__title">Another Sequence of Summer</span>
-          <span class="home-index__arrow" aria-hidden="true">↗</span>
-        </a>
-      </div>
+    <section class="home-index snap-page" aria-label="Continue through the project">
+      <a class="home-door home-door--places" href="visual-geography.html">
+        <span class="home-door__meta">Berkeley · Oakland · Hayward · Niles · SF Richmond</span>
+        <span class="home-door__title">Places we’ve been</span>
+        <span class="home-door__arrow" aria-hidden="true">↗</span>
+      </a>
+      <a class="home-door home-door--sequence" href="final-sequence.html">
+        <span class="home-door__meta">22 photographs · a different order</span>
+        <span class="home-door__title">Another sequence<br>of summer…</span>
+        <span class="home-door__arrow" aria-hidden="true">↗</span>
+      </a>
     </section>
   </main>
 
-  <footer class="editorial-footer">
+  <footer class="editorial-footer home-footer">
     <span>Eva K.</span>
     <span>Visual Geography · 2026</span>
   </footer>
 
-  <script src="js/editorial.js?v=3.2"></script>
+  <script src="js/editorial.js?v=3.3"></script>
 </body>
 </html>
