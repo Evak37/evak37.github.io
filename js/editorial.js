@@ -174,13 +174,11 @@
       const startTime = lastTime;
       animating = true;
 
-      // One wheel/trackpad gesture is enough to commit to one page. The home
-      // page deliberately uses a softer, slower spring so the page feels as if
-      // it has mass rather than simply easing to the next viewport.
-      const isHome = document.body.classList.contains('editorial-home');
-      const stiffness = isHome ? 0.0017 : 0.0052;
-      const damping = isHome ? 0.917 : 0.885;
-      const maxDuration = isHome ? 5400 : 2700;
+      // Use one shared spring profile everywhere so Home and Places have the
+      // same one-gesture / one-page snap feel.
+      const stiffness = 0.0052;
+      const damping = 0.885;
+      const maxDuration = 2700;
 
       const frame = (now) => {
         const dt = clamp((now - lastTime) / 16.667, .5, 2.0);
