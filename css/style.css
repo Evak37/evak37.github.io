@@ -396,3 +396,26 @@ button { font: inherit; color: inherit; }
     object-fit: contain !important;
   }
 }
+
+
+/* V3.6 — sequence: larger presence while retaining full-image containment. */
+@media (min-width: 821px) {
+  .sequence-image {
+    max-width: 82vw;
+    max-height: 64svh;
+  }
+  .sequence-image img {
+    max-width: 82vw !important;
+    max-height: 64svh !important;
+  }
+}
+@media (max-width: 820px) {
+  .sequence-image {
+    max-width: 94vw;
+    max-height: 66svh;
+  }
+  .sequence-image img {
+    max-width: 94vw !important;
+    max-height: 66svh !important;
+  }
+}

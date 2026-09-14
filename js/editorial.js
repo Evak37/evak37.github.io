@@ -6,7 +6,6 @@
   const hero = document.querySelector('[data-home-hero]');
   const heroCopy = document.querySelector('[data-hero-copy]');
   const heroImage = document.querySelector('[data-hero-image]');
-  const transitionBlur = document.querySelector('[data-transition-blur]');
   const summer = document.querySelector('[data-summer]');
   const summerStage = document.querySelector('[data-summer-stage]');
   const summerLine = document.querySelector('[data-summer-line]');
@@ -35,13 +34,6 @@
       heroImage.style.transform = `scale(${(1.008 + .034 * eased).toFixed(4)}) translate3d(0, ${(-8 * eased).toFixed(2)}px, 0)`;
       heroImage.style.filter = 'none';
     }
-    if (transitionBlur) {
-      // Blur exists only at the seam where page 1 meets page 2.
-      const blurIn = clamp((progress - .68) / .32, 0, 1);
-      transitionBlur.style.opacity = `${(.92 * blurIn).toFixed(3)}`;
-      transitionBlur.style.transform = `scale(${(1.08 + .03 * blurIn).toFixed(3)}) translate3d(0, ${(-8 * blurIn).toFixed(2)}px, 0)`;
-    }
-
     const summerRect = summer.getBoundingClientRect();
     const summerEntry = clamp(1 - summerRect.top / vh, 0, 1);
     if (summerStage) {
@@ -53,7 +45,7 @@
       const lineProgress = clamp((summerEntry - .22) / .58, 0, 1);
       const lineEase = 1 - Math.pow(1 - lineProgress, 3);
       summerLine.style.opacity = `${lineEase.toFixed(3)}`;
-      summerLine.style.transform = `translate3d(${(-92 * (1 - lineEase)).toFixed(2)}px, 0, 0)`;
+      summerLine.style.transform = `translate3d(${(-180 * (1 - lineEase)).toFixed(2)}px, 0, 0)`;
     }
   }
 
@@ -167,9 +159,10 @@
 
       // A lightly under-damped spring: slower than a normal smooth scroll,
       // with a tiny settle at the end rather than a mechanical ease-in/out.
-      const stiffness = 0.006;
-      const damping = 0.88;
-      const maxDuration = 2400;
+      const isHome = document.body.classList.contains('editorial-home');
+      const stiffness = isHome ? 0.0025 : 0.0052;
+      const damping = isHome ? 0.900 : 0.885;
+      const maxDuration = isHome ? 4200 : 2700;
 
       const frame = (now) => {
         const dt = clamp((now - lastTime) / 16.667, .5, 2.0);
@@ -202,7 +195,8 @@
       accumulator += e.deltaY;
       clearTimeout(resetTimer);
       resetTimer = setTimeout(() => { accumulator = 0; }, 210);
-      if (Math.abs(accumulator) < 62) return;
+      const threshold = document.body.classList.contains('editorial-home') ? 122 : 72;
+      if (Math.abs(accumulator) < threshold) return;
 
       const direction = accumulator > 0 ? 1 : -1;
       accumulator = 0;

@@ -732,3 +732,109 @@ figure { margin: 0; }
   .geo-title-row p { white-space: normal; justify-self: start; }
   .geo-intro__content > .eyebrow { top: 72px; left: 20px; }
 }
+
+
+/* =========================================================
+   V3.6 — slower home snap, cleaner summer narration,
+   mobile scroll fix, and refined Places compositions
+   ========================================================= */
+
+/* Blur transition removed: keep page boundary crisp. */
+.hero-transition-blur { display: none !important; }
+.summer-passage::before { display: none !important; }
+
+/* Narration should feel like a line entering the story, not a headline. */
+.summer-line {
+  left: var(--pad);
+  right: auto;
+  bottom: clamp(38px, 6vh, 72px);
+  max-width: min(600px, 58vw);
+  margin: 0;
+  text-align: left;
+  font-size: clamp(18px, 1.9vw, 30px);
+  line-height: 1.04;
+  letter-spacing: -.025em;
+}
+
+/* Places title: title first, then the five-place line directly beneath it. */
+.geo-title-row {
+  display: block;
+  margin-top: 20px;
+}
+.geo-title-row h1 {
+  max-width: 1180px;
+  font-size: clamp(72px, 10.2vw, 164px);
+  line-height: .76;
+}
+.geo-title-row p {
+  margin: clamp(18px, 2.6vh, 28px) 0 0;
+  justify-self: auto;
+  white-space: nowrap;
+  font-size: clamp(9px, .76vw, 12px);
+}
+
+/* Individual print refinements requested in V3.6. */
+.chapter-a .print-second { top: 24%; }
+
+.chapter-b .print-main {
+  left: 20%;
+  top: -5%;
+}
+.chapter-b .print-second {
+  top: 49%;
+}
+
+.chapter-c .print-third {
+  bottom: -8%;
+}
+
+.chapter-d .print-third {
+  left: -6%;
+}
+.chapter-d .print-fourth {
+  left: 44%;
+  bottom: -8%;
+}
+
+.chapter-e .print-second {
+  left: -9%;
+}
+.chapter-e .print-third {
+  width: min(29%, 390px);
+  right: 1%;
+  bottom: -6%;
+}
+
+/* On touch devices, never trap vertical scrolling inside the flower strip. */
+@media (max-width: 1000px) {
+  .flower-ribbon {
+    touch-action: pan-x pan-y;
+    overscroll-behavior: auto;
+  }
+  .summer-line {
+    left: 22px;
+    right: auto;
+    bottom: 38px;
+    max-width: 72vw;
+    font-size: clamp(17px, 3.6vw, 26px);
+  }
+}
+
+@media (max-width: 680px) {
+  html { scroll-snap-type: y proximity; }
+  .flower-ribbon { touch-action: auto; }
+  .summer-line {
+    left: 16px;
+    bottom: 30px;
+    max-width: 82vw;
+    font-size: clamp(16px, 5.1vw, 23px);
+  }
+  .geo-title-row h1 {
+    font-size: clamp(62px, 17vw, 94px);
+    line-height: .80;
+  }
+  .geo-title-row p {
+    white-space: normal;
+    line-height: 1.45;
+  }
+}
