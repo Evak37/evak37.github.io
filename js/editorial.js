@@ -42,15 +42,12 @@
     }
 
     if (summerLine) {
-      // The sentence sits high enough in the second page to become visible
-      // early in the page turn. Keep most of the horizontal travel for the
-      // visible portion of the transition so it unmistakably enters from left.
-      const lineProgress = clamp((summerEntry - .14) / .86, 0, 1);
+      // Restore the V3.6 narration behavior: a modest left-to-right entrance
+      // tied to page progress rather than a dramatic off-screen sweep.
+      const lineProgress = clamp((summerEntry - .22) / .58, 0, 1);
       const lineEase = 1 - Math.pow(1 - lineProgress, 3);
-      const travel = Math.min(window.innerWidth * .92, 1280);
-      const opacityProgress = clamp((lineProgress - .04) / .38, 0, 1);
-      summerLine.style.opacity = `${opacityProgress.toFixed(3)}`;
-      summerLine.style.transform = `translate3d(${(-travel * (1 - lineEase)).toFixed(2)}px, 0, 0)`;
+      summerLine.style.opacity = `${lineEase.toFixed(3)}`;
+      summerLine.style.transform = `translate3d(${(-180 * (1 - lineEase)).toFixed(2)}px, 0, 0)`;
     }
   }
 
@@ -77,7 +74,7 @@
       hoverTimer = window.setTimeout(() => {
         setActive(pending);
         pending = null;
-      }, 125);
+      }, 145);
     };
 
     flowerTrack.addEventListener('pointermove', (e) => {
