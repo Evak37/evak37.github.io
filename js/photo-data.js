@@ -15,8 +15,8 @@ window.VG_DATA = {
     hayward: {
       label: 'Hayward',
       date: 'July 2026',
-      count: 13,
-      preview: [1, 3, 6, 10, 13]
+      count: 14,
+      preview: [1, 3, 6, 10, 14]
     },
     niles: {
       label: 'Niles',
