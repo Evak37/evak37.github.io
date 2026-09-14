@@ -32,29 +32,28 @@
       heroCopy.style.opacity = `${(1 - .34 * eased).toFixed(3)}`;
     }
     if (heroImage) {
-      heroImage.style.transform = `scale(${(1.008 + .052 * eased).toFixed(4)}) translate3d(0, ${(-10 * eased).toFixed(2)}px, 0)`;
-      heroImage.style.filter = `blur(${(7.5 * eased).toFixed(2)}px)`;
+      heroImage.style.transform = `scale(${(1.008 + .034 * eased).toFixed(4)}) translate3d(0, ${(-8 * eased).toFixed(2)}px, 0)`;
+      heroImage.style.filter = 'none';
     }
     if (transitionBlur) {
-      const blurIn = clamp((progress - .23) / .67, 0, 1);
-      transitionBlur.style.opacity = `${blurIn.toFixed(3)}`;
-      transitionBlur.style.transform = `scale(${(1.12 + .055 * blurIn).toFixed(3)}) translate3d(0, ${(-34 * blurIn).toFixed(2)}px, 0)`;
+      // Blur exists only at the seam where page 1 meets page 2.
+      const blurIn = clamp((progress - .68) / .32, 0, 1);
+      transitionBlur.style.opacity = `${(.92 * blurIn).toFixed(3)}`;
+      transitionBlur.style.transform = `scale(${(1.08 + .03 * blurIn).toFixed(3)}) translate3d(0, ${(-8 * blurIn).toFixed(2)}px, 0)`;
     }
 
-    // A deliberately blurry middle beat between the cover and the summer page.
     const summerRect = summer.getBoundingClientRect();
     const summerEntry = clamp(1 - summerRect.top / vh, 0, 1);
-    const bridge = Math.sin(Math.PI * summerEntry);
     if (summerStage) {
-      summerStage.style.filter = `blur(${(15 * bridge).toFixed(2)}px)`;
-      summerStage.style.transform = `scale(${(1 + .026 * bridge).toFixed(4)})`;
+      summerStage.style.filter = 'none';
+      summerStage.style.transform = 'none';
     }
 
     if (summerLine) {
-      const lineProgress = clamp((summerEntry - .34) / .50, 0, 1);
+      const lineProgress = clamp((summerEntry - .22) / .58, 0, 1);
       const lineEase = 1 - Math.pow(1 - lineProgress, 3);
       summerLine.style.opacity = `${lineEase.toFixed(3)}`;
-      summerLine.style.transform = `translate3d(0, ${(54 * (1 - lineEase)).toFixed(2)}px, 0)`;
+      summerLine.style.transform = `translate3d(${(-92 * (1 - lineEase)).toFixed(2)}px, 0, 0)`;
     }
   }
 
@@ -159,21 +158,34 @@
     };
 
     function animateTo(el) {
-      const start = window.scrollY;
-      const end = pageTop(el);
-      if (Math.abs(end - start) < 2) return;
-      const duration = 1120;
-      const startTime = performance.now();
+      const target = pageTop(el);
+      let position = window.scrollY;
+      let velocity = 0;
+      let lastTime = performance.now();
+      const startTime = lastTime;
       animating = true;
 
+      // A lightly under-damped spring: slower than a normal smooth scroll,
+      // with a tiny settle at the end rather than a mechanical ease-in/out.
+      const stiffness = 0.006;
+      const damping = 0.88;
+      const maxDuration = 2400;
+
       const frame = (now) => {
-        const t = clamp((now - startTime) / duration, 0, 1);
-        const ease = t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-        window.scrollTo(0, start + (end - start) * ease);
-        if (t < 1) requestAnimationFrame(frame);
-        else {
-          window.scrollTo(0, end);
-          setTimeout(() => { animating = false; }, 120);
+        const dt = clamp((now - lastTime) / 16.667, .5, 2.0);
+        lastTime = now;
+        const displacement = target - position;
+        velocity += displacement * stiffness * dt;
+        velocity *= Math.pow(damping, dt);
+        position += velocity * dt;
+        window.scrollTo(0, position);
+
+        const settled = Math.abs(target - position) < .7 && Math.abs(velocity) < .22;
+        if (!settled && now - startTime < maxDuration) {
+          requestAnimationFrame(frame);
+        } else {
+          window.scrollTo(0, target);
+          setTimeout(() => { animating = false; }, 170);
         }
       };
       requestAnimationFrame(frame);
@@ -189,8 +201,8 @@
 
       accumulator += e.deltaY;
       clearTimeout(resetTimer);
-      resetTimer = setTimeout(() => { accumulator = 0; }, 150);
-      if (Math.abs(accumulator) < 42) return;
+      resetTimer = setTimeout(() => { accumulator = 0; }, 210);
+      if (Math.abs(accumulator) < 62) return;
 
       const direction = accumulator > 0 ? 1 : -1;
       accumulator = 0;
