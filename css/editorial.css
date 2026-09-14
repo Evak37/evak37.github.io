@@ -551,3 +551,141 @@ figure { margin: 0; }
   .geo-outro a { font-size: clamp(54px, 15vw, 88px); }
   .editorial-footer { flex-direction: column; }
 }
+
+/* =========================================================
+   V3.4 — slower page turns, true accordion, richer Places intro
+   ========================================================= */
+
+/* Make the cover-to-summer boundary read as an actual page transition. */
+.hero-transition-blur {
+  bottom: -22vh;
+  height: 68vh;
+  filter: blur(46px) saturate(.62) brightness(1.08);
+}
+.summer-stage {
+  will-change: filter, transform;
+  transform-origin: center center;
+}
+
+/* True accordion: height never changes, images never scale, only panel widths redistribute. */
+.flower-frame {
+  flex: 1 1 0;
+  transition: flex-grow .62s cubic-bezier(.18,.78,.2,1);
+}
+.flower-track.is-hovering .flower-frame { flex-grow: .68; }
+.flower-track.is-hovering .flower-frame.is-active { flex-grow: 3.45; }
+.flower-frame img,
+.flower-frame:hover img {
+  transform: none !important;
+  transition: none;
+}
+
+/* The sentence now reads as narration rather than a corner caption. */
+.summer-line {
+  left: clamp(32px, 7vw, 118px);
+  right: clamp(32px, 7vw, 118px);
+  bottom: clamp(54px, 8vh, 108px);
+  max-width: 1180px;
+  margin-inline: auto;
+  text-align: center;
+  font-size: clamp(38px, 5vw, 78px);
+  line-height: .92;
+  letter-spacing: -.04em;
+}
+
+/* Places intro becomes an image-led opening rather than an empty title page. */
+.editorial-geography .editorial-header {
+  position: absolute;
+  inset: 0 0 auto;
+  max-width: none;
+  color: #f7f7f2;
+  text-shadow: 0 1px 18px rgba(0,0,0,.28);
+}
+.geo-intro {
+  max-width: none;
+  padding: 0;
+  overflow: hidden;
+  color: #f7f7f2;
+  background: #22261f;
+  isolation: isolate;
+}
+.geo-intro__mosaic {
+  position: absolute;
+  inset: -3%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2px;
+  z-index: -3;
+  overflow: hidden;
+}
+.geo-intro__mosaic figure {
+  min-width: 0;
+  height: 106%;
+  overflow: hidden;
+  transform: scale(1.04);
+  will-change: transform;
+}
+.geo-intro__mosaic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(.72) contrast(.96) brightness(.82);
+}
+.geo-intro__veil {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    linear-gradient(180deg, rgba(12,15,11,.18), rgba(12,15,11,.52)),
+    linear-gradient(90deg, rgba(12,15,11,.28), transparent 60%);
+  backdrop-filter: blur(1.2px);
+}
+.geo-intro__content {
+  width: 100%;
+  min-height: 100svh;
+  padding: clamp(98px, 13vh, 190px) var(--pad) clamp(70px, 8vh, 120px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.geo-intro .eyebrow,
+.geo-intro .geo-title-row p,
+.geo-intro .geo-scroll-note { color: rgba(255,255,255,.74); }
+.geo-intro .geo-scroll-note { left: var(--pad); }
+
+/* Requested print balance changes. */
+.chapter-a .print-third { width: min(37%, 490px); }
+.chapter-c .print-fourth {
+  width: min(24%, 315px);
+  right: 3%;
+  bottom: 2%;
+  z-index: 5;
+}
+.chapter-e .print-second { width: min(36%, 485px); }
+
+@media (max-width: 1000px) {
+  .flower-track.is-hovering .flower-frame,
+  .flower-track.is-hovering .flower-frame.is-active { flex-grow: 0; }
+  .summer-line {
+    left: 24px;
+    right: 24px;
+    max-width: 88vw;
+    font-size: clamp(30px, 6vw, 50px);
+  }
+  .geo-intro__mosaic { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+}
+
+@media (max-width: 680px) {
+  .summer-line {
+    left: 18px;
+    right: 18px;
+    bottom: 42px;
+    max-width: none;
+    font-size: clamp(29px, 8.2vw, 42px);
+  }
+  .geo-intro__mosaic { inset: 0; gap: 1px; }
+  .geo-intro__mosaic figure:nth-child(2),
+  .geo-intro__mosaic figure:nth-child(4) { transform: translateY(3%) scale(1.06); }
+  .geo-intro__content { padding-left: 20px; padding-right: 20px; }
+  .chapter-c .print-fourth { width: 36%; }
+}

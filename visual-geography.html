@@ -3,17 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Places we’ve been — Visual Geography — Eva K.</title>
+  <title>Five Places — Visual Geography — Eva K.</title>
   <meta name="description" content="Five places from Visual Geography, Bay Area, Summer 2026.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/editorial.css?v=3.3">
+  <link rel="stylesheet" href="css/editorial.css?v=3.4">
 </head>
 <body class="editorial-geography">
   <header class="editorial-header">
     <a class="editorial-wordmark" href="index.html">Eva K.</a>
     <nav aria-label="Main navigation">
+      <a href="index.html">Home</a>
       <a aria-current="page" href="visual-geography.html">Places</a>
       <a href="final-sequence.html">Sequence</a>
     </nav>
@@ -21,12 +22,22 @@
 
   <main>
     <section class="geo-intro snap-page" data-scroll-scene>
-      <p class="eyebrow">Visual Geography · Bay Area · Summer 2026</p>
-      <div class="geo-title-row">
-        <h1>Places<br>we’ve been</h1>
-        <p>Berkeley · Oakland · Hayward · Niles · SF Richmond</p>
+      <div class="geo-intro__mosaic" data-intro-mosaic aria-hidden="true">
+        <figure><img src="images/berkeley/09.jpg" alt=""></figure>
+        <figure><img src="images/oakland/11.jpg" alt=""></figure>
+        <figure><img src="images/hayward/06.jpg" alt=""></figure>
+        <figure><img src="images/niles/10.jpg" alt=""></figure>
+        <figure><img src="images/richmond/01.jpg" alt=""></figure>
       </div>
-      <div class="geo-scroll-note">Scroll to move through the places ↓</div>
+      <div class="geo-intro__veil" aria-hidden="true"></div>
+      <div class="geo-intro__content">
+        <p class="eyebrow">Visual Geography · Bay Area · Summer 2026</p>
+        <div class="geo-title-row">
+          <h1>Five<br>Places</h1>
+          <p>Berkeley · Oakland · Hayward · Niles · SF Richmond</p>
+        </div>
+        <div class="geo-scroll-note">Scroll to move through the places ↓</div>
+      </div>
     </section>
 
     <section class="chapters" aria-label="Five geographic chapters">
@@ -73,6 +84,7 @@
             <figure class="print print-main"><img src="images/hayward/06.jpg" alt="Hayward photograph"></figure>
             <figure class="print print-second"><img src="images/hayward/05.jpg" alt="Hayward photograph"></figure>
             <figure class="print print-third"><img src="images/hayward/03.jpg" alt="Hayward photograph"></figure>
+            <figure class="print print-fourth"><img src="images/hayward/14.jpg" alt="Hayward photograph"></figure>
           </div>
           <a class="chapter-enter" href="place.html?place=hayward">Open Hayward <span>↗</span></a>
         </div>
@@ -106,7 +118,6 @@
             <figure class="print print-main"><img src="images/richmond/01.jpg" alt="SF Richmond photograph"></figure>
             <figure class="print print-second"><img src="images/richmond/12.jpg" alt="SF Richmond photograph"></figure>
             <figure class="print print-third"><img src="images/richmond/05.jpg" alt="SF Richmond photograph"></figure>
-            <figure class="print print-fourth"><img src="images/richmond/07.jpg" alt="SF Richmond photograph"></figure>
           </div>
           <a class="chapter-enter" href="place.html?place=richmond">Open SF Richmond <span>↗</span></a>
         </div>
@@ -124,6 +135,6 @@
     <span>Visual Geography · 2026</span>
   </footer>
 
-  <script src="js/editorial.js?v=3.3"></script>
+  <script src="js/editorial.js?v=3.4"></script>
 </body>
 </html>
