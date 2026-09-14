@@ -42,10 +42,14 @@
     }
 
     if (summerLine) {
-      const lineProgress = clamp((summerEntry - .22) / .58, 0, 1);
-      const lineEase = 1 - Math.pow(1 - lineProgress, 3);
-      summerLine.style.opacity = `${lineEase.toFixed(3)}`;
-      summerLine.style.transform = `translate3d(${(-180 * (1 - lineEase)).toFixed(2)}px, 0, 0)`;
+      // Let the sentence travel in from well beyond the left edge over most of
+      // the cover-to-summer page turn, so it visibly participates in the snap.
+      const lineProgress = clamp((summerEntry - .02) / .90, 0, 1);
+      const lineEase = lineProgress * lineProgress * (3 - 2 * lineProgress);
+      const travel = Math.min(window.innerWidth * .46, 760);
+      const opacityProgress = clamp((lineProgress - .05) / .55, 0, 1);
+      summerLine.style.opacity = `${opacityProgress.toFixed(3)}`;
+      summerLine.style.transform = `translate3d(${(-travel * (1 - lineEase)).toFixed(2)}px, 0, 0)`;
     }
   }
 
@@ -135,8 +139,6 @@
     if (pages.length < 2) return;
 
     let animating = false;
-    let accumulator = 0;
-    let resetTimer = 0;
 
     const pageTop = (el) => window.scrollY + el.getBoundingClientRect().top;
     const nearestIndex = () => {
@@ -157,12 +159,13 @@
       const startTime = lastTime;
       animating = true;
 
-      // A lightly under-damped spring: slower than a normal smooth scroll,
-      // with a tiny settle at the end rather than a mechanical ease-in/out.
+      // One wheel/trackpad gesture is enough to commit to one page. The home
+      // page deliberately uses a softer, slower spring so the page feels as if
+      // it has mass rather than simply easing to the next viewport.
       const isHome = document.body.classList.contains('editorial-home');
-      const stiffness = isHome ? 0.0025 : 0.0052;
-      const damping = isHome ? 0.900 : 0.885;
-      const maxDuration = isHome ? 4200 : 2700;
+      const stiffness = isHome ? 0.0017 : 0.0052;
+      const damping = isHome ? 0.917 : 0.885;
+      const maxDuration = isHome ? 5400 : 2700;
 
       const frame = (now) => {
         const dt = clamp((now - lastTime) / 16.667, .5, 2.0);
@@ -178,31 +181,31 @@
           requestAnimationFrame(frame);
         } else {
           window.scrollTo(0, target);
-          setTimeout(() => { animating = false; }, 170);
+          setTimeout(() => { animating = false; }, 210);
         }
       };
       requestAnimationFrame(frame);
     }
 
     window.addEventListener('wheel', (e) => {
-      if (e.ctrlKey || Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
-      const edgeIndex = nearestIndex();
-      if ((edgeIndex === 0 && e.deltaY < 0) || (edgeIndex === pages.length - 1 && e.deltaY > 0)) return;
-      // Keep wheel/trackpad as vertical page navigation; hover never hijacks it for the accordion.
-      e.preventDefault();
-      if (animating) return;
+      if (e.ctrlKey || Math.abs(e.deltaX) > Math.abs(e.deltaY) || e.deltaY === 0) return;
 
-      accumulator += e.deltaY;
-      clearTimeout(resetTimer);
-      resetTimer = setTimeout(() => { accumulator = 0; }, 210);
-      const threshold = document.body.classList.contains('editorial-home') ? 122 : 72;
-      if (Math.abs(accumulator) < threshold) return;
+      // The gesture itself is the decision: there is intentionally no delta
+      // accumulator or threshold. Momentum events are ignored while the page
+      // is completing its spring transition.
+      if (animating) {
+        e.preventDefault();
+        return;
+      }
 
-      const direction = accumulator > 0 ? 1 : -1;
-      accumulator = 0;
       const current = nearestIndex();
+      const direction = e.deltaY > 0 ? 1 : -1;
       const next = clamp(current + direction, 0, pages.length - 1);
+      // At the first/last snap page, release the wheel so the document can
+      // still reach ordinary content such as the footer.
       if (next === current) return;
+
+      e.preventDefault();
       animateTo(pages[next]);
     }, { passive: false });
   }
