@@ -226,8 +226,6 @@ figure { margin: 0; }
   transition: flex-grow .68s cubic-bezier(.18,.78,.2,1), filter .45s ease;
   will-change: flex-grow;
 }
-.flower-track:has(.flower-frame:hover) .flower-frame { flex-grow: .74; }
-.flower-track .flower-frame:hover { flex-grow: 3.15; z-index: 2; }
 .flower-frame img {
   position: absolute;
   inset: 0;
@@ -910,4 +908,68 @@ figure { margin: 0; }
     font-size: 16px;
   }
   .summer-line::before { flex-basis: 22px; }
+}
+
+
+/* =========================================================
+   V3.8 — visible narrative entrance, slower accordion,
+   and small Places composition refinements
+   ========================================================= */
+
+/* Put the sentence higher in the flower page so it is already visible while
+   page 2 is sliding into view. JS supplies the large left-to-right travel. */
+.summer-line {
+  top: clamp(120px, 18vh, 190px);
+  bottom: auto;
+  left: clamp(26px, 4.6vw, 78px);
+  width: min(760px, 68vw);
+  font-size: clamp(23px, 2vw, 34px);
+  line-height: 1.03;
+  letter-spacing: -.025em;
+  gap: 0;
+  transform: translate3d(-92vw,0,0);
+}
+.summer-line::before { display: none; }
+
+/* Let the accordion feel heavier: a brief hover dwell selects the panel in JS,
+   then flex widths glide rather than snapping under the pointer. */
+.flower-frame {
+  transition: flex-grow 1.12s cubic-bezier(.16,.76,.18,1);
+}
+.flower-track.is-hovering .flower-frame { flex-grow: .74; }
+.flower-track.is-hovering .flower-frame.is-active {
+  flex-grow: 3.15;
+  z-index: 2;
+}
+
+@media (min-width: 1001px) {
+  /* Oakland 11: bring it back left while keeping the high placement. */
+  .chapter-b .print-main {
+    right: 7%;
+    top: -12%;
+  }
+
+  /* Niles 05: slightly quieter than the other supporting prints. */
+  .chapter-d .print-fourth {
+    width: min(33%, 440px);
+  }
+}
+
+@media (max-width: 1000px) {
+  .summer-line {
+    top: 20vh;
+    bottom: auto;
+    left: 22px;
+    width: min(620px, 80vw);
+    font-size: clamp(20px, 3.5vw, 28px);
+  }
+}
+
+@media (max-width: 680px) {
+  .summer-line {
+    top: 17vh;
+    left: 18px;
+    width: 84vw;
+    font-size: clamp(19px, 5.4vw, 25px);
+  }
 }

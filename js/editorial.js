@@ -42,12 +42,13 @@
     }
 
     if (summerLine) {
-      // Let the sentence travel in from well beyond the left edge over most of
-      // the cover-to-summer page turn, so it visibly participates in the snap.
-      const lineProgress = clamp((summerEntry - .02) / .90, 0, 1);
-      const lineEase = lineProgress * lineProgress * (3 - 2 * lineProgress);
-      const travel = Math.min(window.innerWidth * .46, 760);
-      const opacityProgress = clamp((lineProgress - .05) / .55, 0, 1);
+      // The sentence sits high enough in the second page to become visible
+      // early in the page turn. Keep most of the horizontal travel for the
+      // visible portion of the transition so it unmistakably enters from left.
+      const lineProgress = clamp((summerEntry - .14) / .86, 0, 1);
+      const lineEase = 1 - Math.pow(1 - lineProgress, 3);
+      const travel = Math.min(window.innerWidth * .92, 1280);
+      const opacityProgress = clamp((lineProgress - .04) / .38, 0, 1);
       summerLine.style.opacity = `${opacityProgress.toFixed(3)}`;
       summerLine.style.transform = `translate3d(${(-travel * (1 - lineEase)).toFixed(2)}px, 0, 0)`;
     }
@@ -58,6 +59,9 @@
     if (window.matchMedia('(hover: none)').matches) return;
 
     let active = null;
+    let pending = null;
+    let hoverTimer = 0;
+
     const setActive = (frame) => {
       if (frame === active) return;
       if (active) active.classList.remove('is-active');
@@ -66,12 +70,26 @@
       if (active) active.classList.add('is-active');
     };
 
+    const queueActive = (frame) => {
+      if (frame === active || frame === pending) return;
+      window.clearTimeout(hoverTimer);
+      pending = frame;
+      hoverTimer = window.setTimeout(() => {
+        setActive(pending);
+        pending = null;
+      }, 125);
+    };
+
     flowerTrack.addEventListener('pointermove', (e) => {
       const el = document.elementFromPoint(e.clientX, e.clientY);
-      setActive(el ? el.closest('[data-flower-frame]') : null);
+      queueActive(el ? el.closest('[data-flower-frame]') : null);
     }, { passive: true });
 
-    flowerTrack.addEventListener('pointerleave', () => setActive(null), { passive: true });
+    flowerTrack.addEventListener('pointerleave', () => {
+      window.clearTimeout(hoverTimer);
+      pending = null;
+      hoverTimer = window.setTimeout(() => setActive(null), 110);
+    }, { passive: true });
   }
 
   function chapterMotion() {
