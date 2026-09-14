@@ -11,45 +11,35 @@
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <header class="site-header">
-    <nav class="site-nav" aria-label="Main navigation">
-      <a class="wordmark" href="index.html">Eva K.</a>
-      <ul class="nav-links">
-        <li><a href="visual-geography.html">Visual Geography</a></li>
-        <li><a href="final-sequence.html">Final Sequence</a></li>
-      </ul>
-    </nav>
-  </header>
+<header class="site-header">
+  <nav class="site-nav" aria-label="Main navigation">
+    <a class="wordmark" href="index.html">Eva K.</a>
+    <ul class="nav-links">
+      <li><a href="visual-geography.html">Visual Geography</a></li>
+      <li><a href="final-sequence.html">Another Sequence</a></li>
+    </ul>
+  </nav>
+</header>
 
-  <main class="home-main">
-    <section class="frame-wide home-preview" aria-labelledby="vg-preview-title">
-      <div class="home-preview-head">
-        <div>
-          <h1 class="home-title" id="vg-preview-title">Visual Geography</h1>
-          <p class="home-meta">Bay Area · Summer 2026</p>
-        </div>
-        <a class="quiet-link" href="visual-geography.html">View project →</a>
-      </div>
+<main class="home-main">
+  <section class="home-hero">
+    <h1 class="home-title">Visual Geography</h1>
+    <p class="home-sub">Bay Area · Summer 2026</p>
 
-      <div class="home-preview-grid">
-        <figure><img data-photo-base="images/berkeley/02" alt="Berkeley street scene with contemporary buildings"></figure>
-        <figure><img data-photo-base="images/oakland/04" alt="Oakland photograph" loading="lazy"></figure>
-        <figure><img data-photo-base="images/richmond/05" alt="SF Richmond photograph" loading="lazy"></figure>
-      </div>
-    </section>
+    <div class="home-preview" data-home-preview aria-label="Visual Geography preview"></div>
 
-    <section class="frame-wide home-secondary-link">
-      <a href="final-sequence.html">
-        <span>Final Sequence</span>
-        <span aria-hidden="true">→</span>
-      </a>
-    </section>
-  </main>
+    <div class="home-entry-list">
+      <a class="home-entry" href="visual-geography.html"><span>By Place</span><small>65 photographs →</small></a>
+      <a class="home-entry" href="final-sequence.html"><span>Another Sequence of Summer</span><small>22 photographs →</small></a>
+    </div>
+  </section>
+</main>
 
-  <footer class="site-footer">
-    <span>© 2026 Eva K.</span>
-    <span><a href="https://github.com/EvaK37">GitHub</a></span>
-  </footer>
-  <script src="js/photo-loader.js"></script>
+<footer class="site-footer">
+  <span>© 2026 Eva K.</span>
+  <span><a href="https://github.com/EvaK37">GitHub</a></span>
+</footer>
+<script src="js/photo-data.js"></script>
+<script src="js/site.js"></script>
 </body>
 </html>

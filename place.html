@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visual Geography — Eva K.</title>
+<meta name="description" content="Visual Geography — place chapter.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="viewer-page">
+<header class="site-header">
+  <nav class="site-nav" aria-label="Main navigation">
+    <a class="wordmark" href="index.html">Eva K.</a>
+    <ul class="nav-links">
+      <li><a href="visual-geography.html">← Index</a></li>
+      <li><a href="final-sequence.html">Another Sequence</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="viewer-shell" data-place-viewer>
+  <div class="viewer-head">
+    <h1 data-place-title></h1>
+    <div class="viewer-meta"><span data-place-date></span><span data-place-counter></span></div>
+  </div>
+
+  <div class="viewer-stage" data-place-stage>
+    <div class="viewer-controls" aria-hidden="false">
+      <button type="button" data-place-prev aria-label="Previous photograph">Previous</button>
+      <button type="button" data-place-next aria-label="Next photograph">Next</button>
+    </div>
+  </div>
+
+  <div class="viewer-bottom">
+    <a class="viewer-back" href="visual-geography.html">← All places</a>
+    <div class="filmstrip" data-place-filmstrip aria-label="Photograph thumbnails"></div>
+  </div>
+</main>
+
+<script src="js/photo-data.js"></script>
+<script src="js/site.js"></script>
+</body>
+</html>

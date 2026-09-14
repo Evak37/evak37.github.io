@@ -3,68 +3,43 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Final Sequence — Eva K.</title>
-<meta name="description" content="Final photographic sequence from Visual Geography.">
+<title>Another Sequence of Summer — Eva K.</title>
+<meta name="description" content="An alternate photographic sequence from Visual Geography, Summer 2026.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="sequence-page">
-  <header class="site-header">
-    <nav class="site-nav" aria-label="Main navigation">
-      <a class="wordmark" href="index.html">Eva K.</a>
-      <ul class="nav-links">
-        <li><a href="visual-geography.html">Visual Geography</a></li>
-        <li><a href="final-sequence.html" aria-current="page">Final Sequence</a></li>
-      </ul>
-    </nav>
-  </header>
+<body class="book-page-body">
+<header class="site-header">
+  <nav class="site-nav" aria-label="Main navigation">
+    <a class="wordmark" href="index.html">Eva K.</a>
+    <ul class="nav-links">
+      <li><a href="visual-geography.html">By Place</a></li>
+      <li><a href="final-sequence.html" aria-current="page">Another Sequence</a></li>
+    </ul>
+  </nav>
+</header>
 
-  <main>
-    <section class="sequence-intro">
-      <div class="sequence-intro-copy">
-        <h1 class="page-title">Final Sequence</h1>
-        <a class="quiet-link" href="visual-geography.html">View by place →</a>
-      </div>
-      <p class="sequence-hint">drag / swipe →</p>
-    </section>
-
-    <div class="sequence-viewport" data-drag-scroll aria-label="Final photographic sequence">
-      <div class="sequence-track" id="sequence-track">
-        <p class="sequence-empty" id="sequence-empty">The horizontal sequence is ready. Add the final ordered images as <code>images/sequence/01.jpg</code>, <code>02.jpg</code>, and so on; missing files stay hidden automatically.</p>
-
-        <figure><img src="images/sequence/01.jpg" alt="Final sequence photograph" loading="eager"></figure>
-        <figure><img src="images/sequence/02.jpg" alt="Final sequence photograph" loading="eager"></figure>
-        <figure><img src="images/sequence/03.jpg" alt="Final sequence photograph" loading="lazy"></figure>
-        <figure><img src="images/sequence/04.jpg" alt="Final sequence photograph" loading="lazy"></figure>
-        <figure><img src="images/sequence/05.jpg" alt="Final sequence photograph" loading="lazy"></figure>
-        <figure><img src="images/sequence/06.jpg" alt="Final sequence photograph" loading="lazy"></figure>
-        <figure><img src="images/sequence/07.jpg" alt="Final sequence photograph" loading="lazy"></figure>
-        <figure><img src="images/sequence/08.jpg" alt="Final sequence photograph" loading="lazy"></figure>
-        <figure><img src="images/sequence/09.jpg" alt="Final sequence photograph" loading="lazy"></figure>
-        <figure><img src="images/sequence/10.jpg" alt="Final sequence photograph" loading="lazy"></figure>
-        <figure><img src="images/sequence/11.jpg" alt="Final sequence photograph" loading="lazy"></figure>
-        <figure><img src="images/sequence/12.jpg" alt="Final sequence photograph" loading="lazy"></figure>
-        <figure><img src="images/sequence/13.jpg" alt="Final sequence photograph" loading="lazy"></figure>
-        <figure><img src="images/sequence/14.jpg" alt="Final sequence photograph" loading="lazy"></figure>
-        <figure><img src="images/sequence/15.jpg" alt="Final sequence photograph" loading="lazy"></figure>
-        <figure><img src="images/sequence/16.jpg" alt="Final sequence photograph" loading="lazy"></figure>
-        <figure><img src="images/sequence/17.jpg" alt="Final sequence photograph" loading="lazy"></figure>
-        <figure><img src="images/sequence/18.jpg" alt="Final sequence photograph" loading="lazy"></figure>
-        <figure><img src="images/sequence/19.jpg" alt="Final sequence photograph" loading="lazy"></figure>
-        <figure><img src="images/sequence/20.jpg" alt="Final sequence photograph" loading="lazy"></figure>
-        <figure><img src="images/sequence/21.jpg" alt="Final sequence photograph" loading="lazy"></figure>
-        <figure><img src="images/sequence/22.jpg" alt="Final sequence photograph" loading="lazy"></figure>
-      </div>
+<main>
+  <section class="book-intro">
+    <div>
+      <h1>Another Sequence of Summer</h1>
+      <p>22 photographs · drag, swipe, or use the arrow keys</p>
     </div>
-  </main>
+    <div class="book-nav" aria-label="Sequence navigation">
+      <button type="button" data-book-prev>←</button>
+      <span data-book-status>1 / 11</span>
+      <button type="button" data-book-next>→</button>
+    </div>
+  </section>
 
-  <footer class="site-footer">
-    <span>© 2026 Eva K.</span>
-    <span><a href="index.html">Home</a></span>
-  </footer>
+  <div class="book-viewport" data-sequence-book>
+    <div class="book-track" data-book-track></div>
+  </div>
+</main>
 
-  <script src="js/sequence.js"></script>
+<script src="js/photo-data.js"></script>
+<script src="js/site.js"></script>
 </body>
 </html>
