@@ -1044,14 +1044,3 @@ figure { margin: 0; }
     font-size: clamp(16px, 5.1vw, 23px);
   }
 }
-
-
-/* =========================================================
-   V3.11 — one-gesture desktop snap
-   The custom spring owns desktop page turns, so native smooth scrolling and
-   native CSS snap are disabled only while that controller is active.
-   ========================================================= */
-html.js-spring-snap {
-  scroll-behavior: auto !important;
-  scroll-snap-type: none !important;
-}
