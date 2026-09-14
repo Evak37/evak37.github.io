@@ -1,7 +1,5 @@
 VISUAL GEOGRAPHY V2 ALPHA
 
-This patch does not include any image files. Keep your existing images/ folders exactly as they are.
-
 Updated counts:
 - Berkeley: 10
 - Oakland: 16
