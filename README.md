@@ -1,31 +1,60 @@
-# Eva K. — Visual Geography site
+# Visual Geography
 
-Updated counts:
-- Berkeley: 10
-- Oakland: 16
-- Hayward: 13
-- Niles: 12
-- Richmond: 14
-Total: 65
+A personal photography project about moving through the Bay Area in summer 2026.
 
-The supplied 22-image authored final sequence is stored in js/photo-data.js.
-No image files are duplicated: the sequence references the same place assets.
+The site presents the same body of photographs in two different ways:
 
-UPLOAD / REPLACE THESE FILES IN THE REPO ROOT:
-- index.html
-- visual-geography.html
-- place.html               (new)
-- final-sequence.html
-- css/style.css
-- js/photo-data.js         (new)
-- js/site.js               (new)
+- **Five Places We’ve been** — Berkeley, Oakland, Hayward, Niles, and SF Richmond, organized geographically.
+- **Another Sequence of Summer…** — an authored sequence that reorganizes selected photographs beyond place and chronology.
 
-Old js/photo-loader.js and js/sequence.js can remain in the repo; the new pages do not reference them.
+The website is designed as part photo essay, part digital publication. It uses full-screen imagery, scroll-based transitions, an interactive summer flower accordion, layered photographic compositions, and a horizontal sequence viewer.
 
-Important: filenames should remain 01, 02, 03... inside each location folder. The JS tries common extensions automatically (.jpg/.jpeg/.png/.webp).
+## Live site
 
-This is intentionally an ALPHA design pass:
-- Visual Geography is now an index of five chapters rather than a 65-image vertical dump.
-- Each place opens in a focused viewer with a bottom filmstrip.
-- Another Sequence of Summer uses book-like two-page spreads and preserves the supplied order.
-- No Final 40 view yet.
+**https://evak37.github.io/**
+
+## Built with
+
+- HTML
+- CSS
+- Vanilla JavaScript
+- GitHub Pages
+
+No framework or build step is required.
+
+## Structure
+
+```text
+/
+├── index.html
+├── visual-geography.html
+├── place.html
+├── final-sequence.html
+├── css/
+├── js/
+└── images/
+    ├── berkeley/
+    ├── oakland/
+    ├── hayward/
+    ├── niles/
+    ├── richmond/
+    └── flowers/
+```
+
+Photographs are stored once and reused across different views and sequences through shared JavaScript data rather than duplicated image files.
+
+## Interaction
+
+- Full-screen landing image
+- Scroll-snapped sections
+- Hover-responsive flower accordion
+- Layered place previews
+- Keyboard / swipe place navigation
+- Horizontal photographic sequence
+- Responsive layouts for desktop and mobile
+
+## Notes
+
+This site is a continuing personal project. Layout, sequencing, and interactions may change as the edit develops.
+
+© Eva K.
