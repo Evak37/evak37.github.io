@@ -1,4 +1,4 @@
-VISUAL GEOGRAPHY V2 ALPHA
+# Eva K. — Visual Geography site
 
 Updated counts:
 - Berkeley: 10
