@@ -1018,8 +1018,8 @@ figure { margin: 0; }
 @media (min-width: 1001px) {
   .chapter-b .print-main {
     left: auto;
-    right: 22%;
-    top: -20%;
+    right: 18%;
+    top: -25%;
   }
 }
 
