@@ -161,49 +161,57 @@
     if (!root) return;
 
     const sequence = data.finalSequence;
-    const spreads = [];
-    for (let i = 0; i < sequence.length; i += 2) spreads.push(sequence.slice(i, i + 2));
-
     const track = document.querySelector('[data-book-track]');
     const status = document.querySelector('[data-book-status]');
     const prev = document.querySelector('[data-book-prev]');
     const next = document.querySelector('[data-book-next]');
     let current = 0;
 
-    spreads.forEach((spread, spreadIndex) => {
-      const section = document.createElement('section');
-      section.className = 'book-spread';
-      section.dataset.spread = spreadIndex;
+    sequence.forEach(([place, number], index) => {
+      const slide = document.createElement('section');
+      slide.className = 'book-slide';
+      slide.dataset.slide = index;
 
-      for (let pageIndex = 0; pageIndex < 2; pageIndex++) {
-        const page = document.createElement('div');
-        page.className = `book-page book-page-${pageIndex === 0 ? 'left' : 'right'}`;
-        const item = spread[pageIndex];
-        if (item) {
-          const [place, number] = item;
-          const figure = document.createElement('figure');
-          figure.className = 'book-image';
-          figure.append(makeImage(place, number, { eager: spreadIndex === 0, onMissing: () => figure.remove() }));
-          page.append(figure);
-        }
-        section.append(page);
-      }
-      track.append(section);
+      const figure = document.createElement('figure');
+      figure.className = 'sequence-image';
+      figure.append(makeImage(place, number, {
+        eager: index === 0,
+        alt: `${data.places[place].label} photograph`,
+        onMissing: () => slide.remove()
+      }));
+
+      slide.append(figure);
+      track.append(slide);
     });
 
-    function go(index) {
-      current = Math.min(spreads.length - 1, Math.max(0, index));
-      root.scrollTo({ left: current * root.clientWidth, behavior: 'smooth' });
-      status.textContent = `${current + 1} / ${spreads.length}`;
+    function updateUI() {
+      status.textContent = `${current + 1} / ${sequence.length}`;
       prev.disabled = current === 0;
-      next.disabled = current === spreads.length - 1;
+      next.disabled = current === sequence.length - 1;
+    }
+
+    function go(index) {
+      current = Math.min(sequence.length - 1, Math.max(0, index));
+      root.scrollTo({ left: current * root.clientWidth, behavior: 'smooth' });
+      updateUI();
     }
 
     prev.addEventListener('click', () => go(current - 1));
     next.addEventListener('click', () => go(current + 1));
+
     document.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowLeft') go(current - 1);
       if (e.key === 'ArrowRight') go(current + 1);
+    });
+
+    let startX = null;
+    root.addEventListener('pointerdown', (e) => { startX = e.clientX; });
+    root.addEventListener('pointerup', (e) => {
+      if (startX == null) return;
+      const dx = e.clientX - startX;
+      startX = null;
+      if (Math.abs(dx) < 50) return;
+      if (dx < 0) go(current + 1); else go(current - 1);
     });
 
     let scrollTimer;
@@ -212,14 +220,12 @@
       scrollTimer = setTimeout(() => {
         const w = root.clientWidth || 1;
         current = Math.round(root.scrollLeft / w);
-        current = Math.min(spreads.length - 1, Math.max(0, current));
-        status.textContent = `${current + 1} / ${spreads.length}`;
-        prev.disabled = current === 0;
-        next.disabled = current === spreads.length - 1;
+        current = Math.min(sequence.length - 1, Math.max(0, current));
+        updateUI();
       }, 80);
     }, { passive: true });
 
-    go(0);
+    updateUI();
   }
 
   renderHome();
